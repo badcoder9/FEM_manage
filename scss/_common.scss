@@ -1,0 +1,137 @@
+@use 'colors' as clrs;
+@use 'typography' as typ;
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* Remove default margin */
+*{
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    font-family: typ.$ff-primary;
+}
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'],
+ul {
+  list-style: none;
+}
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+html, body{
+    height: 100%;
+}
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: clrs.$clr-neutral-light;
+  position: relative;
+            isolation: isolate;
+}
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+/* Make images easier to work with */
+img,
+picture, 
+svg {
+  max-width: 100%;
+  display: block;
+}
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+a{
+    text-decoration: none;
+}
+.container{
+    width: 100%;
+    margin: auto;
+    max-width: 1120px;
+    padding: 3rem 1rem;
+}
+%round-el {
+    color: clrs.$clr-accent-100;
+    background-color: clrs.$clr-accent-400;
+    font-size: typ.$fs-300;
+    padding: .8rem 1.5rem;
+    border-radius: 3rem;
+    -webkit-box-shadow: 0px 15px 20px -10px clrs.$clr-accent-400; 
+    box-shadow: 0px 15px 20px -10px clrs.$clr-accent-400;
+}
+.btn-rounded{
+  @extend %round-el;
+    &:hover{
+        background-color: clrs.$clr-accent-400-light;
+    }
+}
+.btn-rounded-invert{
+    @extend %round-el;
+    color: clrs.$clr-accent-400;
+    background-color: clrs.$clr-accent-100;
+    padding: 1rem 2rem;
+    -webkit-box-shadow: 0px 15px 20px -10px rgba(0,0,0,0.3); 
+    box-shadow: 0px 15px 20px -10px rgba(0,0,0,0.3);
+    &:hover{
+        color: clrs.$clr-accent-400-light;
+    }
+}
+.rounded{
+  @extend %round-el;
+  color: clrs.$clr-neutral-light;
+  background-color: clrs.$clr-accent-400;
+  padding: .5rem 1.5rem;
+  border-radius: 3rem;
+  -webkit-box-shadow: none; 
+    box-shadow: none;
+}
+button{
+    cursor: pointer;
+}
+.submit{
+    box-shadow: none;
+    border: none;
+}
+.mobile-show:not(.footer__copyright){
+    display: none;
+}
+.page-title{
+	font-size: typ.$fs-900;
+	font-weight: typ.$fw-bold;
+  line-height: 1.2;
+}
+.sec-title{
+	font-size: typ.$fs-700;
+	font-weight: typ.$fw-bold;
+  line-height: 1.2;
+}
+.content-text{
+  opacity: .6;
+  margin-block: 2rem;
+}
+.my-3{
+	margin-block: 2rem;
+}
+.py-3{
+	padding-block: 2rem;
+}

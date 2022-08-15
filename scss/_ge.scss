@@ -1,0 +1,264 @@
+@use 'colors' as clrs;
+@use 'typography' as typ;
+
+
+.header {
+    padding: 1rem 0;
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__logo{
+        display: flex;
+        a{
+            outline-offset: 2px;
+            padding: .5rem;
+        }
+    }
+    &__nav{
+        ul{
+            display: flex;
+            li{
+                a{
+                    padding: 1rem;  
+                    color: clrs.$clr-primary-100;    
+                    font-weight: typ.$fw-semi-bold;  
+                    &:hover{
+                        opacity: .6;
+                    }            
+                }
+                &:not(:last-child){
+                    margin-right: .5rem;
+                }
+            }    
+        }
+        &__menu-close{
+            display: none;
+            border: none;
+            background-color: transparent;
+            padding: .5rem;
+        }
+    }
+    &__menu-open{
+        display: none;
+        border: none;
+        background-color: transparent;
+        padding: .5rem;
+    }
+    .overlay{
+        position: fixed;
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.5));
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        display: none;
+        z-index: 5;
+    }
+}
+
+
+
+.footer{
+    background-color: clrs.$clr-primary-100;  
+    color: clrs.$clr-neutral-light;   
+    a,
+    &__copyright{
+        color: clrs.$clr-neutral-light;
+    }
+    &__copyright{
+        font-size: typ.$fs-200;
+        font-weight: typ.$fw-regular;
+        opacity: .7 ;
+    }
+    a{
+        &:hover{
+            color: clrs.$clr-accent-400-light;
+        }
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        padding-block: 3rem;
+    }
+    .attribution{
+        width: 100%;
+        max-width: 96%;
+        margin: auto;
+        padding: 1rem;
+        text-align: center;
+        a{
+            text-decoration: underline;
+        }
+    }
+    &__content{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+
+        &__left, &__right{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        &__right{
+            align-items: flex-end;
+        }
+    }
+    &__social{
+        ul{
+            display: flex;
+            li:not(:last-child){
+                margin-right: 1rem;
+            }
+        }
+    }
+    &__nav{
+        ul{
+            display: block;
+            column-count: 2;
+            li:not(:last-child){
+                margin-bottom: 1rem;
+            }
+        }
+    }
+    .submit {
+        padding: .5rem 1.2rem;
+    }
+    #subscribe, #subscribe-mobile{
+        padding: .5rem;
+        border-radius: 1rem;
+        text-indent: .5rem;
+        width: 230px;
+        font-size: typ.$fs-300;
+        margin-right: .5rem;
+
+        &[aria-invalid]{
+            border: 2px solid clrs.$clr-error;
+            &::placeholder{
+                color: clrs.$clr-error;
+            }
+        }
+    }
+    &__subscribe{
+        display: flex;
+        flex-wrap: wrap;
+        .form-error{
+            font-style: italic;
+            font-size: typ.$fs-200;
+            color: clrs.$clr-error;
+        }
+    }
+    .logo{
+        .icon{
+            max-width: none;
+            height: 24px !important;
+            width: 146px !important;
+
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .footer{
+        &__content{
+            grid-template-columns: 1fr;
+            gap: 3rem;
+    
+            &__left, &__right{
+                align-items: center;
+                > *:not(.mobile-show){
+                    display: none;
+                }
+            }
+            &__right{
+                justify-content: center;
+                .logo{
+                    margin-block: 2rem;
+                }
+            }
+            &__center{
+                width: auto;
+                margin: auto;
+            }
+        }
+        .mobile-show{
+            display: block;
+        }
+        &__social{
+            i{
+                font-size: 2rem;
+            }
+        }
+        #subscribe-mobile{
+            width: 230px;
+        }
+        
+    }    
+}
+@media screen and (max-width: 899px) {
+    .header {
+        position: relative;
+        .container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0;
+        }
+        &__logo{
+            display: flex;
+            a{
+                outline-offset: 2px;
+            }
+        }
+        &__nav{
+            display: none;
+            ul{
+                display: flex;
+                padding: 1rem 0;
+                li{
+                    display: flex;
+                    margin: 0;
+                    a{
+                        width: 100%;
+                        padding: 1rem;  
+                        color: clrs.$clr-primary-100;                  
+                    }
+                    &:not(:last-child){
+                        margin-right: .5rem;
+                    }
+                }    
+            }
+            &__menu-close{
+                display: block;
+                position: absolute;
+                top: -3.5rem;
+                right: .5rem;
+            }
+            &.open{
+                display: block;
+                position: absolute;
+                z-index: 9;
+                top: 100%;
+                width: calc(100% - 2rem);
+                left: 1rem;
+                ul{
+                    flex-direction: column;
+                    background: clrs.$clr-neutral-light;
+                    margin-top: 3rem;
+                    text-align: center;
+                    border-radius: .5rem;
+                }
+            }
+        }
+        &__menu-open,
+        .open ~ .overlay{
+            display: block;
+        }
+        &__right,
+        .hidden.header__menu-open{
+            display: none;
+        }
+    }
+}
