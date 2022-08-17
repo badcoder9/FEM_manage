@@ -33,7 +33,7 @@ body {
   line-height: 1.5;
   background-color: clrs.$clr-neutral-light;
   position: relative;
-            isolation: isolate;
+  isolation: isolate;
 }
 /* A elements that don't have a class get default styles */
 a:not([class]) {
@@ -114,20 +114,6 @@ button{
 }
 .mobile-show:not(.footer__copyright){
     display: none;
-}
-.page-title{
-	font-size: typ.$fs-900;
-	font-weight: typ.$fw-bold;
-  line-height: 1.2;
-}
-.sec-title{
-	font-size: typ.$fs-700;
-	font-weight: typ.$fw-bold;
-  line-height: 1.2;
-}
-.content-text{
-  opacity: .6;
-  margin-block: 2rem;
 }
 .my-3{
 	margin-block: 2rem;
